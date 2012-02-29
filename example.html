@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html class="split chapter" lang="en-US-x-hixie">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	
+	<title> BubblesJS - Example </title>
+	
+	<link href="bubbles.css" rel="stylesheet" />
+	<script type="text/javascript" src="bubbles.js"></script>
+	
+</head>
+
+
+<body>
+	<div id="wrapper">
+				
+			<h2>Captions Test</h2>
+			
+			<video width="680" height="390" id="video-example" controls="">
+				<source src="http://bubbles.childnodes.com/vid/VfE.mp4" type="video/mp4" />
+				<source src="http://bubbles.childnodes.com/vid/VfE.webm" type="video/webm" />
+				<source src="http://bubbles.childnodes.com/vid/VfE.ogv" type="video/ogg" />
+			</video>
+			<br />
+			<h2>Subtitles Test</h2>
+			<video width="680" height="390" id="video-srt" controls="">
+				<source src="http://bubbles.childnodes.com/vid/video01.mp4" type="video/mp4" />
+				<source src="http://bubbles.childnodes.com/vid/video01.webm" type="video/webm" />
+			</video>
+			
+<script type="text/javascript">
+	//initialization
+	(function( w ){
+		
+		var subtitles_test = new Bubbles.video('video-srt');
+		
+		//first argument - false = built in JS srt parser
+		//				 - 1 = bubbles.childnoes php JS parser
+		//				 - "your string here", path to a server side php parser
+		subtitles_test.subtitles( false,
+			{
+				"English" :	{
+					language	:	"English",
+					file		:	"subs/english.srt"
+				},
+				"Greek" :	{
+					language	:	"Greek",
+					file		:	"subs/greek.srt"
+				}
+			}
+		);
+		subtitles_test.add(
+			{
+				"test05" :	{
+					type		: "content",
+					effect		: [ "fade", "fade" ],
+					className	: "bubblesBlack",
+					content		: " Comming Up Soon <br /> Lorem Ipsum Dolec sit amet.",
+					dimensions	: [ '145px', '57px' ],	//pixels - top left
+					position	: [ '15%', '73%' ], //percent - %, pixels "px"
+					config		: [ 22, 38 ]
+				}
+			}
+		);
+	
+	
+		var captionsDemo = new Bubbles.video('video-example',
+			{
+				"hiddenLink" :	{
+					type		: "link",
+					effect		: "default",
+					className	: "default",
+					content		: "javascript: alert('YOU CLICKED AN INVISIBLE LINK');",
+					dimensions	: [ '30%', '20%' ], //width - height
+					position	: [ '70%', '66%' ], //top   - left  |  percent - %, pixels "px"
+					config		: [ 2 ],
+					callback	: function() { _gaq.push(['_trackPageview', 'Video1 Played']); }
+				},
+				"test02" :	{
+					type		: "content",
+					effect		: "slide",
+					className	: "bubbles2",
+					content		: "<span> Hello World. And I am a sliding Box </span>",
+					dimensions	: [ '110px', '17%' ],
+					position	: [ '100px', '200px' ],
+					config		: [ 5, 8, 11, 15 ]
+				},
+				"test03" :	{
+					type		: "content",
+					effect		: "fade",
+					className	: "bubbles2",
+					content		: "<span> Hello World! <br /> I am a Caption Box </span>",
+					dimensions	: [ '150px', '12%' ],
+					position	: [ '200px', '240px' ],
+					config		: [ 2, 8 ]
+				},
+				"test04" :	{
+					type		: "content",
+					effect		: "fade",
+					className	: "bubbles2",
+					content	: "<span> THE BACKGROUND IS NOW BLACK </span>",
+					dimensions	: [ '110px', '20%' ],
+					position	: [ '190px', '50px' ],
+					config		: [ 5, 10, 40, 50 ],
+					callback	: function() { document.getElementsByTagName('body')[0].style.backgroundColor="#000000"; },
+					callbackEnd	: function() { document.getElementsByTagName('body')[0].style.backgroundColor="#F0EFF5"; }
+
+				},
+				"test06" :	{
+					type		: "content",
+					effect		: "fade",
+					className	: "bubblesBlack",
+					content	: "<span> Lorem ipsum dolor sit amet, consectetur adipiscing elit. </span>",
+					dimensions	: [ '130px', '74px' ],
+					position	: [ '100px', '450px' ],
+					config		: [ 0.3, 4, 22, 30 ]
+				},
+				"test07" :	{
+					type		: "content",
+					effect		: [ "fade", "slide" ],
+					className	: "bubblesPink",
+					content	: "<span> Lorem ipsum dolor sit amet, consectetur adipiscing elit. </span>",
+					dimensions	: [ '160px', '16%' ],
+					position	: [ '170px', '90px' ],
+					config		: [ 6, 9, 16, 24, 35 ]
+				},
+				"test08" :	{
+					type		: "content",
+					effect		: "slide",
+					className	: "bubbles2",
+					content	: "<span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem.</span>",
+					dimensions	: [ '210px', '90px' ],
+					position	: [ '10px', '20px' ],
+					config		: [ 2, 5 ]
+				},
+				"test09" :	{
+					type		: "content",
+					effect		: "fade",
+					className	: "bubblesEmpty",
+					content	: "<img src='http://bubbles.childnodes.com/vid/david.gif' />",
+					dimensions	: [ '62px', '52px' ],
+					position	: [ '40%', '40%' ],
+					config		: [ 0.22, 35 ]
+				},
+				"test10" :	{
+					type		: "content",
+					effect		: "slide",
+					className	: "bubbles2",
+					content	: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+					dimensions	: [ '205px', '52px' ],
+					position	: [ '60px', '350px' ],
+					config		: [ 0.4, 4.1, 7, 11 ]
+				}
+			}
+		);
+		
+		captionsDemo.add(
+			{
+				"test05" :	{
+					type		: "content",
+					effect		: [ "fade", "fade" ],
+					className	: "bubbles3",
+					content		: "Lorem ipsum",
+					dimensions	: [ '170px', '20px' ],	//pixels - top left
+					position	: [ '10%', '40px' ], //percent - %, pixels "px"
+					config		: [ 13, 19, 26, 34 ]
+				}
+			}
+		);
+
+})(window);
+</script>
+	
+</body>
+</html>
