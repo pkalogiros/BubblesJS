@@ -649,7 +649,7 @@ function videoBubbles() {
 		this.add( bubbleObject );
 	}
 }
-var Bubbles = new videoBubbles(); //initalizing the videoBubbles class, we need only one instance fpr every control
+var Bubbles = new videoBubbles(); //initalizing the videoBubbles class, we need only one instance for every control
 
 //Adding the default Effects
 
