@@ -2,15 +2,14 @@
 	name		: bubbles.js
 	description	: Adds Captions and Subtitles support to HTML5 video
 	url		: bubbles.childnodes.com
-	Version	: 1.01 ( 15 / 02 / 2011 )
+	Version	: 1.02 ( 28 / 07 / 2012 )
 	
 	//Change Log: 
+		* VideoJS 3.0 Support
 		* Added Audio Descriptionss
 	____________________________________________________
 	Author	:  Pantelis Kalogiros
-
-	You should have received a copy of the MIT License
-	along with this program.  If not, see <http://www.opensource.org/licenses/mit-license.php>
+	MIT Licensed <http://www.opensource.org/licenses/mit-license.php>
 */
 
 function videoBubbles() {
@@ -110,8 +109,12 @@ function videoBubbles() {
 	 * removes (temporarilly a video bubble on mouse click of the 'close' link tag)
 	 *********************************/
 	this.close = function( strName, vidId  ) {
-		var fullObj = bubbles.all[ vidId ][ strName ]; //{ "data" : data, "object" : el, "flag" : false };
-		bubbles.effects[ 'fade' ]( fullObj.object,  fullObj.data, false ); //off with the fade effect
+		var fullObj = bubbles.all[ vidId ][ strName ], //{ "data" : data, "object" : el, "flag" : false };
+			effect = fullObj.data.effect[ 1 ];
+		
+		!effect && ( effect = "default" );
+		bubbles.effects[ effect ]( fullObj.object,  fullObj.data, false ); //off with the fade effect
+		
 		if( fullObj.data.callbackEnd )
 			fullObj.data.callbackEnd();
 	};
@@ -642,6 +645,14 @@ function videoBubbles() {
 		if( !wrap )
 			this.container = bubbles.wrapObject( this.el, id, container_class );
 		else{
+			if( this.el.getElementsByTagName('video')[0] )
+				this.el = this.el.getElementsByTagName('video')[0];
+				
+			delete( bubbles.all[ id ] );
+			id = this.el.id;
+			this.id = id;
+
+			bubbles.all[ id ] = {};
 			this.container = this.el.parentNode;
 			this.container.className += " " + container_class;
 		}
